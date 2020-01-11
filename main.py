@@ -15,8 +15,8 @@ import pyttsx3
 engine = pyttsx3.init()
 
 
-r = sr.Recognizer()engine.setProperty('rate',80)
-engine.setProperty('volume','0.7')
+r = sr.Recognizer()
+
 
 
 engine.setProperty('rate',80)

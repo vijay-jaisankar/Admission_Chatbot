@@ -10,8 +10,17 @@ import random
 import json
 import pickle
 import speech_recognition as sr
+import pyttsx3
 
-r = sr.Recognizer()
+engine = pyttsx3.init()
+
+
+r = sr.Recognizer()engine.setProperty('rate',80)
+engine.setProperty('volume','0.7')
+
+
+engine.setProperty('rate',80)
+engine.setProperty('volume','0.7')
 
 
 with open('intents.json') as file:
@@ -107,6 +116,8 @@ def chat():
         inp = text
     except:
         inp = "There was an issue with recognising your voice. It's too sweet :)"
+	engine.say(inp)
+	engine.runAndWait()
 	
     if inp.lower()=="quit":
       break
@@ -117,7 +128,10 @@ def chat():
      for tg in data["intents"]:
        if tg["tag"] == tag:
          responses = tg['responses']
-     print(random.choice(responses))
+     tobesaid=random.choice(responses)
+     engine.say(tobesaid)
+     print(tobesaid)
+     engine.runAndWait()
     else:
      print("I didn't get that; please try again!")
 

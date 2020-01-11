@@ -94,11 +94,20 @@ def bag_of_words(s,words):
   return numpy.array(bag)
 
 def chat():
-  print("Start Talking to the bot!(Type 'quit' to stop)")
+  print("Start Talking to the Admissions Chatbot!(Type 'quit' to stop)")
   while True:
 
+    print('You')
+    with sr.Microphone() as source:
+    print("Speak Anything")
+    audio = r.listen(source)
+
+    try:
+        text = r.recognize_google(audio)
+        inp = text
+    except:
+        inp = "There was an issue with recognising your voice. It's too sweet :)"
 	
-    inp=input("You: ")
     if inp.lower()=="quit":
       break
     results = model.predict([bag_of_words(inp,words)])[0]
@@ -110,6 +119,6 @@ def chat():
          responses = tg['responses']
      print(random.choice(responses))
     else:
-     print("I didn't get that")
+     print("I didn't get that; please try again!")
 
 chat()
